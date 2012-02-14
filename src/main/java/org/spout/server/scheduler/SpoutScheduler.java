@@ -222,9 +222,7 @@ public final class SpoutScheduler implements Scheduler {
 			} catch (InterruptedException ex) {
 				SpoutServer.logger.log(Level.SEVERE, "Error while shutting down server: {0}", ex.getMessage());
 			}
-
 		}
-
 	}
 
 	public void startMainThread() {
@@ -351,6 +349,7 @@ public final class SpoutScheduler implements Scheduler {
 					joined = true;
 				} catch (TimeoutException e) {
 					server.getLogger().info("Tick had not completed after " + (PULSE_EVERY << 4) + "ms");
+					AsyncExecutorUtils.dumpAllStacks();
 				}
 			}
 
@@ -379,6 +378,7 @@ public final class SpoutScheduler implements Scheduler {
 				joined = true;
 			} catch (TimeoutException e) {
 				server.getLogger().info("Tick had not completed after " + (PULSE_EVERY << 4) + "ms");
+				AsyncExecutorUtils.dumpAllStacks();
 			}
 		}
 
@@ -401,6 +401,7 @@ public final class SpoutScheduler implements Scheduler {
 					joined = true;
 				} catch (TimeoutException e) {
 					server.getLogger().info("Tick had not completed after " + (PULSE_EVERY << 4) + "ms");
+					AsyncExecutorUtils.dumpAllStacks();
 				}
 			}
 
@@ -420,6 +421,7 @@ public final class SpoutScheduler implements Scheduler {
 					joined = true;
 				} catch (TimeoutException e) {
 					server.getLogger().info("Tick had not completed after " + (PULSE_EVERY << 4) + "ms");
+					AsyncExecutorUtils.dumpAllStacks();
 				}
 			}
 		} finally {
